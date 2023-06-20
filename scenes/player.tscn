@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p08a"]
 radius = 3.5
-height = 12.0
+height = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fe0gy"]
 atlas = ExtResource("1_neibe")
@@ -424,7 +424,7 @@ script = ExtResource("1_8i3u7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(1, -6)
+position = Vector2(0.5, -4)
 shape = SubResource("CapsuleShape2D_5p08a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -433,3 +433,4 @@ position = Vector2(0, -14)
 scale = Vector2(0.898437, 0.898437)
 sprite_frames = SubResource("SpriteFrames_phbnr")
 animation = &"front_walk"
+metadata/_edit_lock_ = true
