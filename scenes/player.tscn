@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8i3u7"]
 [ext_resource type="Texture2D" uid="uid://coi7fl3i2gleo" path="res://sprites/characters/player.png" id="1_neibe"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w3cek"]
-radius = 3.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p08a"]
+radius = 3.5
+height = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fe0gy"]
 atlas = ExtResource("1_neibe")
@@ -417,15 +418,18 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_8i3u7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -3)
-shape = SubResource("CircleShape2D_w3cek")
+y_sort_enabled = true
+position = Vector2(1, -6)
+shape = SubResource("CapsuleShape2D_5p08a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -14)
 scale = Vector2(0.898437, 0.898437)
 sprite_frames = SubResource("SpriteFrames_phbnr")
-animation = &"front_idle"
-metadata/_edit_lock_ = true
+animation = &"front_walk"
