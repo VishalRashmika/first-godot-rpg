@@ -239,5 +239,11 @@ shape = SubResource("CircleShape2D_02jda")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="enemyhitbox"]
 shape = SubResource("CircleShape2D_0u3ec")
 
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="enemyhitbox" to="." method="_on_enemyhitbox_body_entered"]
+[connection signal="body_exited" from="enemyhitbox" to="." method="_on_enemyhitbox_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
