@@ -451,6 +451,15 @@ wait_time = 0.5
 [node name="deal_attack_timer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 860
+limit_bottom = 270
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
 [connection signal="body_entered" from="playerhitbox" to="." method="_on_playerhitbox_body_entered"]
 [connection signal="body_exited" from="playerhitbox" to="." method="_on_playerhitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

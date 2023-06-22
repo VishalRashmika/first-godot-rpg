@@ -19,10 +19,6 @@ config/icon="res://sprites/icon.svg"
 
 Globalgamescript="*res://Global/globalgamescript.gd"
 
-[display]
-
-window/stretch/scale=3.0
-
 [input]
 
 attack={
