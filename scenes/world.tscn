@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cg7hawg12kun4"]
+[gd_scene load_steps=12 format=3 uid="uid://cg7hawg12kun4"]
 
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_fgi36"]
 [ext_resource type="Texture2D" uid="uid://dq77bypdef6wt" path="res://sprites/tilesets/grass.png" id="1_gmjif"]
 [ext_resource type="Texture2D" uid="uid://c7xh4x12ql6be" path="res://sprites/tilesets/plains.png" id="2_el7jr"]
 [ext_resource type="Texture2D" uid="uid://thwn56jfoh5i" path="res://sprites/objects/objects.png" id="3_nn5m4"]
@@ -203,8 +204,12 @@ sources/0 = SubResource("TileSetAtlasSource_e1206")
 sources/1 = SubResource("TileSetAtlasSource_2siek")
 sources/2 = SubResource("TileSetAtlasSource_c1hwo")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bupng"]
+size = Vector2(69, 57)
+
 [node name="world" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_fgi36")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -229,7 +234,21 @@ layer_2/tile_data = PackedInt32Array(196614, 655362, 7, 720897, 655362, 7, 98304
 
 [node name="player" parent="." instance=ExtResource("4_klpdt")]
 y_sort_enabled = false
-position = Vector2(53, 104)
+position = Vector2(493, 264)
 
 [node name="enemy" parent="." instance=ExtResource("5_oa1io")]
 position = Vector2(149, 106)
+
+[node name="collisions" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions"]
+polygon = PackedVector2Array(24, -2, 863, 0, 865, 272, 616, 272, 514, 272, 514, 326, 447, 324, 450, 279, 449, 271, -2, 270, -1, -28, 13, -2, 15, -31, -3, -34, -26, -23, -33, 140, -25, 341, 950, 348, 931, -96, 185, -71, 40, -54)
+
+[node name="cliffside_transition_point" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cliffside_transition_point"]
+position = Vector2(480.5, 298.5)
+shape = SubResource("RectangleShape2D_bupng")
+
+[connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
+[connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]
