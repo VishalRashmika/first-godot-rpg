@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cpq1ryhf5gapg"]
+[gd_scene load_steps=57 format=3 uid="uid://cpq1ryhf5gapg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8i3u7"]
 [ext_resource type="Texture2D" uid="uid://coi7fl3i2gleo" path="res://sprites/characters/player.png" id="1_neibe"]
@@ -417,6 +417,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hu45h"]
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -436,3 +438,15 @@ scale = Vector2(0.898437, 0.898437)
 sprite_frames = SubResource("SpriteFrames_phbnr")
 animation = &"front_walk"
 metadata/_edit_lock_ = true
+
+[node name="playerhitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerhitbox"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_hu45h")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="playerhitbox" to="." method="_on_playerhitbox_body_entered"]
+[connection signal="body_exited" from="playerhitbox" to="." method="_on_playerhitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
