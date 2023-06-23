@@ -10,6 +10,7 @@ var can_take_damage = true
 
 func _physics_process(delta):
 	deal_damage()
+	update_health()
 	
 	if player_chase == true:
 		position += (player.position - position)/speed
@@ -49,7 +50,7 @@ func _on_enemyhitbox_body_exited(body):
 func deal_damage():
 	if player_inattack_zone and Globalgamescript.player_current_attack:
 		if can_take_damage:
-			health = health - 20
+			health = health - 25
 			$take_damage_cooldown.start()
 			can_take_damage = false
 			print("slime health", health)
@@ -59,3 +60,12 @@ func deal_damage():
 
 func _on_take_damage_cooldown_timeout():
 	can_take_damage = true 
+	
+func update_health():
+	var healthbar = $healthbar
+	
+	healthbar.value = health
+	if health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
